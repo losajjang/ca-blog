@@ -24,7 +24,15 @@ function App() {
           </div>
         );
       })}
-      {/* <input onChange={(e)=>{입력값변경(e.target.value)}}/> */}
+      
+      <div className="publish">
+        <input onChange={(e)=>{입력값변경(e.target.value)}}/>
+        <button onClick={()=>{
+          let 새글 = [...글제목]
+          새글.unshift(입력값);
+          글제목변경(새글)}}>저장</button>
+      </div>
+
       <button onClick={()=>{modal상태변경(!modal상태)}}>글보기</button>
       {modal상태 === true ? <Modal 글제목={글제목} 제목클릭={제목클릭} 발행일={발행일} 상세내용={상세내용}></Modal> : null}
     </div>
