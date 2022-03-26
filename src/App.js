@@ -9,13 +9,14 @@ function App() {
   let [현재하트, 하트변경] = useState(0);
   let [modal상태, modal상태변경] = useState(false)
   let [제목클릭, 제목클릭변경] = useState(0)
+  let [입력값, 입력값변경] = useState('')
 
   return (
     <div className="App">
       <h2 className="black-nav">개발 Blog</h2>
       {글제목.map(function (글, i) {
         return (
-          <div className="list">
+          <div className="list" key={i}>
             <h3 onClick={()=>{제목클릭변경(i)}}>{글}<span onClick={() => {하트변경(현재하트 + 1);}}>❤️</span>{현재하트}</h3>
             <p>발행일: {발행일[i]}</p>
             <p style={{display:"none"}}>{상세내용[i]}</p>
@@ -23,7 +24,7 @@ function App() {
           </div>
         );
       })}
-      <input/>
+      {/* <input onChange={(e)=>{입력값변경(e.target.value)}}/> */}
       <button onClick={()=>{modal상태변경(!modal상태)}}>글보기</button>
       {modal상태 === true ? <Modal 글제목={글제목} 제목클릭={제목클릭} 발행일={발행일} 상세내용={상세내용}></Modal> : null}
     </div>
